@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-
+import { NavigationContainer } from '@react-navigation/native';
 import { useState } from 'react';
 import { ApplicationProvider, Layout, Text, Button, Input } from '@ui-kitten/components';
 
@@ -20,13 +20,7 @@ const styles = StyleSheet.create({
 {/* <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 <Text>Details Screen</Text>
 </View> */}
-const Login = async () => {
-    setLoginState("during");
-    // await new Promise(resolve => setTimeout(resolve, 2000));
-    setLoginState("after");
-    // await new Promise(resolve => setTimeout(resolve, 2000));
-    r.push("./screens.main.js");
-}
+
 
 // login button
 export const LoginBtn = ({
@@ -34,22 +28,22 @@ export const LoginBtn = ({
     
 
 }) => {
-    var color = "red" // this isn't working?
-    var btn_txt = "Login";
-    var [loginState, setLoginState] = useState("before")
+    let status = "success" // this isn't working?
+    let btn_txt = "Login";
+    let [loginState, setLoginState] = useState("before")
 
     if (loginState === "before") {
-        color = "red";
+        status = "success";
         btn_txt = "Login";
     }
 
     if (loginState === "during") {
-        color = "green";
+        status = "green";
         btn_txt = "logging in";
     }
 
     if (loginState === "after") {
-        color = "grey",
+        status = "basic",
             btn_txt = "yay";
     }
 
@@ -61,17 +55,25 @@ export const LoginBtn = ({
             setLoginState("after");
         }
         if (loginState === "after") {
-            r.push("./screens.main.js");
+            navigation.navigate("./screens.main.js");
         }
     }
 
+   
+
+    const Login = async () => {
+        setLoginState("during");
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        setLoginState("after");
+        await new Promise(resolve => setTimeout(resolve, 2000));
+    }
     return (
 
         <Layout style={styles.container}>
             <Button
-                color={color}
+                status={status}
                 loginState={loginState}
-                onClick={() => Login()}
+                onPress={() => Login()}
                 // onClick={() => navigation.navigate('main')}
             // onLoginClick={()=>Login()}
             >

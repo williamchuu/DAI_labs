@@ -20,6 +20,7 @@ const Styles = StyleSheet.create({
 export const InputField = () => {
 
     const [value, setValue] = React.useState('');
+    const [passValue, setPassValue] = React.useState('');
     return (
         <Layout style={Styles.container}>
             <Input
@@ -29,8 +30,8 @@ export const InputField = () => {
             />
             <Input
                 placeholder='Password'
-                value={value}
-                onChangeText={nextValue => setValue(nextValue)}
+                value={passValue}
+                onChangeText={nextValue => setPassValue(nextValue)}
             />
         </Layout>
     );
