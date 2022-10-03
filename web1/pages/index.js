@@ -58,11 +58,6 @@ export default function Home() {
 
   return (
     <div>
-      {/* <Button color={c}
-        onClick={() => Login()}>
-        {btn_txt}
-        {loginState === "during" && <Loader active />}
-      </Button> */}
       <LoginForm loginState={loginState} 
       onLoginClick={()=>Login()}/>
     </div>
